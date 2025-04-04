@@ -8,40 +8,28 @@ const Navbar = () => {
     return (
         <Nav>
             <NavbarContainer>
-                <NavLogo to='/'>
-                    <a href='/' style={{ display: "flex", alignItems: "center", color: "white", marginBottom: '20px', cursor: 'pointer' }}>
-                        <DiCssdeck size='3rem'/> <Span>LinnovateTech</Span>
-                    </a>
+                <NavLogo>
+                    <NavLink href='/' style={{ display: "flex", alignItems: "center", color: "white", marginBottom: '20px', cursor: 'pointer' }}>
+                        <DiCssdeck size='2rem'/> <Span>LinnovateTech</Span>
+                    </NavLink>
                 </NavLogo>
                 <MobileIcon>
-                    <FaBars onClick={() => {
-                        setIsOpen(!isOpen);
-                    }}
-                    />
+                    <FaBars onClick={() => setIsOpen(!isOpen)} />
                 </MobileIcon>
                 <NavItems>
-                    <NavLink href='sobre'>Sobre nós</NavLink>
-                    <NavLink href='servicos'>Serviços</NavLink>
-                    <NavLink href='projetos'>Projetos</NavLink>
-                    <NavLink href='contato'>Contato</NavLink>
+                    <NavLink href='/sobre'>Sobre nós</NavLink>
+                    <NavLink href='/servicos'>Serviços</NavLink>
+                    <NavLink href='/projetos'>Projetos</NavLink>
+                    <NavLink href='/contato'>Contato</NavLink>
                 </NavItems>
-                {
-                    isOpen &&
+                {isOpen && (
                     <MobileMenu isOpen={isOpen}>
-                        <MobileLink href="sobre" onClick={() => {
-                            setIsOpen(!isOpen)
-                        }}>Sobre nós</MobileLink>
-                        <MobileLink href="servicos" onClick={() => {
-                            setIsOpen(!isOpen)
-                        }}>Serviço</MobileLink>
-                        <MobileLink href="projetos" onClick={() => {
-                            setIsOpen(!isOpen)
-                        }}>Projetos</MobileLink>
-                        <MobileLink href="contato" onClick={() => {
-                            setIsOpen(!isOpen)
-                        }}>Contato</MobileLink>
+                        <MobileLink href="/sobre" onClick={() => setIsOpen(false)}>Sobre nós</MobileLink>
+                        <MobileLink href="/servicos" onClick={() => setIsOpen(false)}>Serviço</MobileLink>
+                        <MobileLink href="/projetos" onClick={() => setIsOpen(false)}>Projetos</MobileLink>
+                        <MobileLink href="/contato" onClick={() => setIsOpen(false)}>Contato</MobileLink>
                     </MobileMenu>
-                }
+                )}
             </NavbarContainer>
         </Nav>
     )

@@ -1,35 +1,30 @@
 import React from 'react'
 import { useState } from 'react'
-import { Container, Wrapper, Title, Desc, CardContainer, ToggleButtonGroup, ToggleButton } from './ProjectStyle'
+import { Container, Wrapper, Title, Desc, CardContainer } from './ProjectStyle'
 import ProjectCard from '../Cards/ProjetoCard'
 import { projects } from '../../data/constants'
 
 const Projects = ({ openModal, setOpenModal }) => {
-    const [toggle, setToogle] = useState("all");
+    const [toggle] = useState("all");
+
+    const filteredProjects = toggle === 'all' 
+      ? projects 
+      : projects.filter((item) => item.category === toggle);
 
     return (
         <Container id='projects'>
             <Wrapper>
                 <Title>Projetos</Title>
-                <Desc> Alguns dos projetos realizados pela nossa empresa.</Desc>
-                <ToggleButtonGroup>
-                    {toggle === "all" ?
-                        <ToggleButton active value="all" onClick={() => setToogle("all")}>Todos</ToggleButton>
-                        :
-                        <ToggleButton value="all" onClick={() => setToogle("all")}>Todos</ToggleButton>
-                    }
-                    
-                </ToggleButtonGroup>
+                <Desc>Alguns dos projetos realizados pela nossa empresa.</Desc>
                 <CardContainer>
-                    {toggle === 'all' && projects
-                        .map((project) => (
-                            <ProjectCard project={project} openModal={openModal} setOpenModal={setOpenModal} />
-                        ))}
-                    {projects
-                        .filter((item) => item.category === toggle)
-                        .map((project) => (
-                            <ProjectCard project={project} openModal={openModal} setOpenModal={setOpenModal} />
-                        ))}
+                    {filteredProjects.map((project) => (
+                        <ProjectCard 
+                          key={project.id}
+                          project={project} 
+                          openModal={openModal} 
+                          setOpenModal={setOpenModal} 
+                        />
+                    ))}
                 </CardContainer>
             </Wrapper>
         </Container>

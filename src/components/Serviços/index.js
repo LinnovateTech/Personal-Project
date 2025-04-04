@@ -7,7 +7,7 @@ import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 
-import { services, experiences } from "../../data/constants";
+import { services } from "../../data/constants";
 import ServicosCard from '../Cards/ServiçosCard';
 
 const Container = styled.div`
@@ -87,18 +87,17 @@ const index = () => {
                 <TimelineSection>
                     <Timeline>
                         {services.map((servico, index) => (
-                            <TimelineItem>
+                            <TimelineItem key={`servico-${index}`}>
                                 <TimelineContent sx={{ py: '12px', px: 2 }}>
                                     <ServicosCard services={servico} />
                                 </TimelineContent>
                                 <TimelineSeparator>
                                     <TimelineDot variant="outlined" color="secondary" />
-                                    {index !== experiences.length && <TimelineConnector style={{ background: '#854CE6' }} />}
+                                    {index !== services.length - 1 && <TimelineConnector style={{ background: '#854CE6' }} />}
                                 </TimelineSeparator>
                             </TimelineItem>
                         ))}
                     </Timeline>
-                    
                 </TimelineSection>
             </Wrapper>
         </Container>
